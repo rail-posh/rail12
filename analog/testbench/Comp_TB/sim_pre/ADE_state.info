@@ -1,0 +1,3 @@
+projectDir = '"~/simulation"
+designInfo = '("DARPA_V2D" "TB_CompPowerDelayKickback_NoPar" "schematic" "spectre")
+descriptionText = "None"

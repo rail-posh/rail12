@@ -1,0 +1,3 @@
+projectDir = '"~/simulation"
+designInfo = '("Delay_Cell_sim" "DCell_sim" "schematic" "spectre")
+descriptionText = "None"
