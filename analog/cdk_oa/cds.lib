@@ -1,0 +1,8 @@
+
+
+DEFINE cmos14lpp    /home/.../cmos14lpp
+DEFINE IN14LPP_SC7P5T_84CPP_BASE_SSC14R  /home/.../IN14LPP_SC7P5T_84CPP_BASE_SSC14R
+DEFINE basic      $CDSHOME/tools/dfII/etc/cdslib/basic
+DEFINE analogLib  $CDSHOME/tools/dfII/etc/cdslib/artist/analogLib
+
+DEFINE rail12     ./rail12
