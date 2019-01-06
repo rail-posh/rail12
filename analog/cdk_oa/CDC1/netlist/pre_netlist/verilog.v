@@ -12,8 +12,8 @@ module cdc1 ( CAP, VDD, VNW, VO, VPW, VSS, I1, I2 );
   inout VSS;
   inout VPW;
 specify 
-    specparam CDS_LIBNAME  = "RAIL12";
-    specparam CDS_CELLNAME = "cdc1";
+    specparam CDS_LIBNAME  = "rail12lp";
+    specparam CDS_CELLNAME = "CDC1";
     specparam CDS_VIEWNAME = "schematic";
 endspecify
 
