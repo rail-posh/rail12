@@ -1,0 +1,11 @@
+--pcdbVlog file, Rev:1.0
+
+#CELL
+* SC7P5T_INVX0P5_SSC14R *
+I2
+I1
+
+#CELL
+* NFET1 *
+I0
+
