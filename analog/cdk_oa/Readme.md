@@ -1,5 +1,6 @@
+# Cell OA and Netlist
 
-Guide for OA based rail12 library
+Guide for OA and netlist based rail12 library
 Step 1: Download and Unzip
 Download the rail12.zip file and unzip in your virtuoso directory
 
