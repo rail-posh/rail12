@@ -1,31 +1,36 @@
 module COMP (  
-output  CKN, 
-output VON, 
-output VONB,
+input VDACN,
+input VDACP,
+input  DONE, 
+input STARTLSB, 
+output VON,
 output VOP,
-output VOPB,
+output VALID,
 inout  AVDD,
 inout AVSS, 
 inout  DVDD, 
 inout DVSS, 
-input CKC, 
-input CKL,
-input VDACN,
-input VDACP
+inout  VNW, 
+inout VPW 
 );
 
+wire CKC;
+wire VALID;
 wire comp_a;
 wire comp_b;
 wire RDB;
 wire delay_out;
+wire startlsb_n;
 
-SC7P5T_INVX1_SSC14R I0 ( .Z(VONB), .VDD(DVDD), .VSS(DVSS), .A(VON));
-SC7P5T_INVX1_SSC14R I1 ( .Z(VOPB), .VDD(DVDD), .VSS(DVSS), .A(VOP)); //@symmetry I0
-SC7P5T_NR2X1_SSC14R I2 ( .Z(RDB), .VDD(DVDD), .VSS(DVSS), .A(VON), .B(VOP));
-SC7P5T_DLYX100_SSC14R I3 ( .Z(delay_out), .VDD(DVDD), .VSS(DVSS), .A(RDB));
-SC7P5T_NR2X2_SSC14R I4 ( .Z(CKN), .VDD(DVDD), .VSS(DVSS), .A(delay_out), .B(CKL));
-SC7P5T_INVX1_SSC14R I5 ( .Z(VON), .VDD(AVDD), .VSS(AVSS), .A(comp_b));
-SC7P5T_INVX1_SSC14R I6 ( .Z(VOP), .VDD(AVDD), .VSS(AVSS), .A(comp_a)); //@symmetry I5
-MND3X1 I7 ( .A(comp_b), .B(comp_a), .VDD(AVDD), .VSS(AVSS), .CK(CKC), .VIP(VDACN));
-MND3X1 I8 ( .A(comp_a), .B(comp_b), .VDD(AVDD), .VSS(AVSS), .CK(CKC), .VIP(VDACP)); //@symmetry I7
+SC7P5T_OR2X1_SSC14R I00 ( .Z(RDB), .VDD(DVDD), .VSS(DVSS), .A(VON), .B(VOP), .VNW(VNW), .VPW(VPW));
+SC7P5T_INVX4_SSC14R I01 ( .Z(VALID), .VDD(DVDD), .VSS(DVSS), .A(RDB), .VNW(VNW), .VPW(VPW));
+SC7P5T_DLYX100_SSC14R I02 ( .Z(delay_out), .VDD(DVDD), .VSS(DVSS), .A(VALID), .VNW(VNW), .VPW(VPW));
+SC7P5T_NR3X1_SSC14R I03 ( .Z(CKC), .VDD(DVDD), .VSS(DVSS), .A(delay_out), .B(startlsb_n), .C(DONE), .VNW(VNW), .VPW(VPW));
+SC7P5T_INVX1_SSC14R I04 ( .Z(startlsb_n), .VDD(DVDD), .VSS(DVSS), .A(STARTLSB), .VNW(VNW), .VPW(VPW));
+SC7P5T_INVX2_SSC14R I05 ( .Z(VON), .VDD(AVDD), .VSS(AVSS), .A(comp_b), .VNW(VNW), .VPW(VPW));
+SC7P5T_INVX2_SSC14R I06 ( .Z(VOP), .VDD(AVDD), .VSS(AVSS), .A(comp_a), .VNW(VNW), .VPW(VPW));
+MND3X1 I07 ( .A(comp_b), .B(comp_a), .VDD(AVDD), .VSS(AVSS), .CK(CKC), .VIP(VDACN), .VNW(VNW), .VPW(VPW));
+MND3X1 I08 ( .A(comp_a), .B(comp_b), .VDD(AVDD), .VSS(AVSS), .CK(CKC), .VIP(VDACP), .VNW(VNW), .VPW(VPW)); 
+MND3X1 I09 ( .A(comp_b), .B(comp_a), .VDD(AVDD), .VSS(AVSS), .CK(CKC), .VIP(VDACN), .VNW(VNW), .VPW(VPW));
+MND3X1 I10 ( .A(comp_a), .B(comp_b), .VDD(AVDD), .VSS(AVSS), .CK(CKC), .VIP(VDACP), .VNW(VNW), .VPW(VPW)); 
 endmodule
