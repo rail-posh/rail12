@@ -1,0 +1,68 @@
+.SUBCKT MND3X1 A B CK VDD VIP VNW VPW VSS
+*.PININFO CK:I VIP:I A:B B:B VDD:B VNW:B VPW:B VSS:B
+MP6 net04 CK VDD VNW pfet m=1 l=14n nf=1 nfin=2 
+MP0 A B VDD VNW pfet m=1 l=14n nf=2 nfin=2
+MP2 A CK VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MN3 A B net04 VPW nfet m=1 l=14n nf=1 nfin=3
+MN1 net04 VIP net17 VPW nfet m=1 l=14n nf=5 nfin=3
+MN0 net17 CK VSS VPW nfet m=1 l=14n nf=1 nfin=3 
+.ENDS
+**************************************************************************************************************************
+
+**************************************************************************************************************************
+.SUBCKT CDC1 CAP I1 I2 VDD VNW VO VPW VSS
+*.PININFO I1:I I2:I CAP:B VDD:B VNW:B VO:B VPW:B VSS:B
+MP1 VO I1 CAP VNW pfet m=1 l=14n nf=1 nfin=3
+MP0 CAP VO VDD VNW pfet m=1 l=14n nf=1 nfin=3
+MN1 net17 I2 VSS VPW nfet m=1 l=14n nf=1 nfin=3
+MN0 VO VDD net17 VPW nfet m=1 l=14n nf=1 nfin=3
+.ENDS
+**************************************************************************************************************************
+
+**************************************************************************************************************************
+.SUBCKT DLYX25 A VDD VNW VPW VSS Z
+*.PININFO A:I Z:O VDD:B VNW:B VPW:B VSS:B
+MN1 Z net31 net020 VPW nfet m=1 l=14n nf=1 nfin=2
+MN0 net020 net31 VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN3 net31 net012 net020 VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN5 net020 net012 VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN8 net012 A net35 VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN9 net35 A VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MP1 net019 net31 VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP3 net019 net012 VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP4 net31 net012 net019 VNW pfet m=1 l=14n nf=1 nfin=2
+MP0 Z net31 net019 VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP10 net36 A VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP7 net012 A net36 VNW pfet m=1 l=14n nf=1 nfin=2
+.ENDS
+**************************************************************************************************************************
+
+**************************************************************************************************************************
+
+.SUBCKT DLYX40 A VDD VNW VPW VSS Z
+*.PININFO A:I Z:O VDD:B VNW:B VPW:B VSS:B
+MMMN1 Z net036 net061 VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN2 net061 net036 VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN6 net036 net014 net022 VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN7 net022 net014 VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN3 net014 net012 net020 VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN5 net020 net012 VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN8 net012 A net35 VPW nfet m=1 l=14n nf=1 nfin=2
+MMMN9 net35 A VSS VPW nfet m=1 l=14n nf=1 nfin=2
+MMMP1 net062 net036 VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP2 Z net036 net062 VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP3 net019 net012 VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP4 net014 net012 net019 VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP5 net021 net014 VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP6 net036 net014 net021 VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP10 net36 A VDD VNW pfet m=1 l=14n nf=1 nfin=2
+MMMP7 net012 A net36 VNW pfet m=1 l=14n nf=1 nfin=2 
+.ENDS
+**************************************************************************************************************************
+
+**************************************************************************************************************************
+.SUBCKT MOM2 CB CT VDD VNW VPW VSS
+*.PININFO CB:B CT:B VDD:B VNW:B VPW:B VSS:B
+CC0 CT CB 1f
+.ENDS
+**************************************************************************************************************************
